@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xhy.shop.categorysecond.vo.CategorySecond" 
+		table="categorysecond">
+		<id name="csid">
+			<generator class="native"></generator>
+		</id>
+		<property name="csname"></property>
+		<!-- name是实体中对应的属性，column对应关联的外键，
+				class对应关联属性类的全路径 -->
+		<many-to-one name="category" column="cid" 
+			class="com.xhy.shop.category.vo.Category"></many-to-one>
+		
+		<set name="products">
+			<key column="csid"></key>
+			<one-to-many class="com.xhy.shop.product.vo.Product"/>	
+		</set>
+	</class>
+	
+</hibernate-mapping>

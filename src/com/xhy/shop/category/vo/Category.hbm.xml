@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<class name="com.xhy.shop.category.vo.Category" table="category">
+		<id name="cid">
+		<generator class="native"></generator>
+		</id>
+		<property name="cname"></property>
+	<!--配置二级分类的集合  集合中，name代表关联集合属性，
+			key中column是关联的字段，classs对应集合所在的二级全路径-->	
+			<!--  注意懒加载要设置成false,设置order-by使得按照一定的顺序输出-->
+		<set name="categorySeconds" lazy="false" order-by="csid">
+			<key column="cid"></key>
+			<one-to-many class="com.xhy.shop.categorysecond.vo.CategorySecond"/>
+		</set>
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<package name="shop" extends="struts-default" namespace="/">
+		<!--  首页访问的action-->
+		<action name="index" class="IndexAction">
+			<result name="index">/WEB-INF/jsp/index.jsp</result>
+			
+		</action>
+		<!-- 用户的action -->
+		<action name="user_*" class="userAction" method="{1}" >
+			<result name="registPage">/WEB-INF/jsp/register.jsp</result>
+			<result name="input">/WEB-INF/jsp/register.jsp</result>
+			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+			<result name="loginPage">/WEB-INF/jsp/login.jsp</result>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="loginSuccess" type="redirectAction">index</result>
+			<!-- <result name="quit">/WEB-INF/jsp/index.jsp</result> -->
+			<result name="quit" type="redirectAction">index</result>
+			<result name="checkRegisterFail">/WEB-INF/jsp/register.jsp</result>
+			<result name="checkLoginFail">/WEB-INF/jsp/login.jsp</result>
+			<!-- <allowed-methods>registPage</allowed-methods>  -->
+		</action>
+		<!--  验证码的action-->
+		<action name="checkImg" class="checkImgAction"></action>
+		<!--商品的action  -->
+		<action name="product_*" class="productAction" method="{1}" >
+			<result name="findbyid">/WEB-INF/jsp/product.jsp</result>
+			<result name="findbycid">/WEB-INF/jsp/productlist.jsp</result>
+			<result name="findbycsid">/WEB-INF/jsp/productlistcs.jsp</result>
+		</action>
+		
+		<!-- 购物车action -->
+		<action name="cart_*" class="cartAction" method="{1}">
+			<result name="addCart" >/WEB-INF/jsp/cart.jsp</result>
+			<result name="clearCart" >/WEB-INF/jsp/cart.jsp</result>
+			<result name="removeCart" >/WEB-INF/jsp/cart.jsp</result>
+			<result name="toCart" >/WEB-INF/jsp/cart.jsp</result>	
+		</action>
+		<!-- 订单Action -->
+		<action name="order_*" class="orderAction" method="{1}">
+			<result name="save">/WEB-INF/jsp/order.jsp</result>
+			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="myorder">/WEB-INF/jsp/myorder.jsp</result>
+			<result name="findorderbyoid">/WEB-INF/jsp/order.jsp</result>
+		</action>
+		<!-- 后台admin的action -->
+		<action name="adminUser_*" class="adminUserAction" method="{1}">
+			<result name="faillogin" >/admin/index.jsp</result>
+			<result name="successlogin">/admin/home.jsp</result>
+		</action>
+		<!-- 一级分类的action -->
+		<action name="adminCategory_*" class="adminCategoryAaction" method="{1}">
+			<result name="findallcategory">/admin/category/list.jsp</result>
+			<result name="saveSuccess" type="redirectAction"></result>
+		</action>
+	</package>
+</struts>
+
+
+
+
+
+
+
+
+
+
+
